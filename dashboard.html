@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Loan</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Welcome, <span id="userName"></span></h1>
+    <div class="summary">
+      <p>Total Amount: ₱<span id="totalAmount"></span></p>
+      <p>Paid Amount: ₱<span id="paidAmount"></span></p>
+      <p>Balance: ₱<span id="balanceAmount"></span></p>
+    </div>
+    <h2>Installment Details</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th><th>Name</th><th>%</th><th>Due</th><th>Payable</th><th>Paid</th><th>Balance</th><th>Pay</th>
+        </tr>
+      </thead>
+      <tbody id="installmentTable"></tbody>
+    </table>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>

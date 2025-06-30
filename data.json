@@ -1,0 +1,38 @@
+
+{
+  "users": [
+    {
+      "id": "user001",
+      "password": "mypassword",
+      "name": "Juan Dela Cruz",
+      "totalAmount": 1500,
+      "paidAmount": 500,
+      "installments": [
+        {
+          "name": "Installment 1",
+          "percentage": 33.3,
+          "dueDate": "2025-08-01",
+          "payable": 500,
+          "paid": 500,
+          "payLink": "https://example.com/pay1"
+        },
+        {
+          "name": "Installment 2",
+          "percentage": 33.3,
+          "dueDate": "2025-09-01",
+          "payable": 500,
+          "paid": 0,
+          "payLink": "https://example.com/pay2"
+        },
+        {
+          "name": "Installment 3",
+          "percentage": 33.4,
+          "dueDate": "2025-10-01",
+          "payable": 500,
+          "paid": 0,
+          "payLink": "https://example.com/pay3"
+        }
+      ]
+    }
+  ]
+}
