@@ -1,0 +1,233 @@
+/*=============================================================
+PAGE NAME               :   Default CSS
+CREATION DATE           :   26-04-2023
+DESIGN AND DEVELOPED BY :   Gaurav Kalbande
+==============================================================*/
+
+:root {
+    --bs-darkblue : #2e66a6;
+}
+
+body {
+    background: url("../../../image/login/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.college-address p {
+    font-size: 0.8rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.btn-primary {
+    background-color: var(--bs-darkblue);
+}
+
+.btn:focus-visible {
+    outline: 0;
+    box-shadow: none;
+}
+
+.default-form-header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    border-radius: 4px;
+    background-color: var(--bs-darkblue);
+    width: 30%;
+}
+
+.input-prefix {
+    position: absolute;
+    top: 75%;
+    right: 8px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    color: var(--bs-gray-500);
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bi-phone.input-prefix {
+    top: 60%;
+}
+
+.bi-calendar.input-prefix {
+    font-size: 0.8rem;
+    right: 10px;
+}
+
+.password-prefix {
+    position: absolute;
+    top: 75%;
+    right: 8px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    color: var(--bs-gray-500);
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.captcha-text {
+    font-size: 1.5rem !important;
+    text-align: center;
+    font-style: italic;
+    font-family: cursive;
+    background-image: linear-gradient(#eee 1px, transparent 1px),linear-gradient(to right, #eee 1px, transparent 1px);
+    background-size: 5px 5px;
+}
+
+#captchatextBox {
+    text-transform: uppercase;
+}
+
+/*---- Math Captcha CSS ----*/
+.submit__generated {
+    /*display: inline-block;*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+}
+
+    .submit__generated span {
+        display: inline-block;
+        width: 50px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    .submit__generated.valid .submit__input {
+        border: 1px solid #2ecc71;
+        color: #2ecc71 !important;
+    }
+
+    .submit__generated.unvalid .submit__input {
+        border: 1px solid #e74c3c;
+        color: #e74c3c;
+    }
+
+div.submit__error,
+div.submit__error--empty {
+    color: #e74c3c;
+}
+
+.submit__input {
+    outline: 0;
+    height: 35px;
+    width: 50px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+span.submit__error,
+span.submit__error--empty {
+    color: #e74c3c;
+}
+
+i.ref-refresh {
+    margin: 4px 0 0px 5px;
+    padding: 5px;
+    font-size: 20px;
+    color: var(--bs-gray-500);
+    cursor: pointer;
+    transform-origin: center center;
+    transition: transform 0.2s ease-out, color 0.2s ease-out;
+}
+
+    i.ref-refresh:hover {
+        color: rgba(0, 0, 0, 0.4);
+        transform: rotate(180deg);
+    }
+
+marquee {
+    width: 1000px !important;
+}
+
+.w-20 {
+    width: 95px;
+}
+
+.NPC-Logo {
+        width: 100px; /* Initial size */
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        position: relative;
+    }
+
+    /* Enlarged and centered image */
+    .NPC-Logo.enlarged {
+        width: 150px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(2); /* Centered and enlarged */
+        z-index: 1000; /* Above other content */
+        transition: transform 0.3s ease;
+    }
+
+    /* Overlay when image is enlarged */
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        z-index: 999;
+    }
+
+    .overlay.active {
+        display: block;
+    }
+/*=====================================*/
+.btn-primary.submit:hover {
+    background-color: #3498db;
+}
+@media (min-width: 1400px) {
+     .w-20 {
+        width: 150px !important;
+    }
+}
+@media (min-width: 1780px) {
+    .college-detail {
+        margin-top: 150px !important;
+    }
+
+    .login-details {
+        margin-top: 150px !important;
+        padding-left: 100px;
+        padding-right: 50px;
+    }
+}
+
+@media (max-width: 991px) {
+    body {
+        background: var(--bs-white);
+    }
+
+    .navbar-expand {
+        justify-content: center;
+        background: var(--bs-white);
+        padding: 0px;
+    }
+}
