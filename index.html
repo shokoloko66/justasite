@@ -201,8 +201,9 @@
       <strong>Campus:</strong> Dagupan Campus<br />
       <strong>Year/Semester:</strong>
       <select id="semester-select" onchange="updateSemesterData()" class="form-select d-inline w-auto">
-        <option value="Y1S1">Y1S1 - SY 24-25 SEM I</option>
-        <option value="Y1S2">Y1S2 - SY 24-25 SEM II</option>
+        <option value="Y1S1">Y2S1 - SY 25-26 SEM I</option>
+        <option value="Y1S2">Y2S2 - SY 25-26 SEM II</option>
+        <option value="Y1S3">Y2S3 - SY 25-26 SEM III</option>
       </select>
     </p>
 
@@ -267,12 +268,17 @@
 
     const semesterData = {
       Y1S1: [
-        { subject: "FIL 124", due: 200, paid: 100, balance: 100, receipt: "10001", date: "06/01/2024" },
-        { subject: "FIL 127", due: 200, paid: 150, balance: 50, receipt: "10002", date: "06/02/2024" },
+        { subject: "FIL 124", due: 200, paid: 0, balance: 200, receipt: "Pending", date: "TBD" },
+        { subject: "FIL 127", due: 200, paid: 0, balance: 200, receipt: "Pending", date: "TBD" },
+        { subject: "GEN 006", due: 150, paid: 0, balance: 150, receipt: "Pending", date: "TBD" },
+        { subject: "PATHFIT 032", due: 100, paid: 0, balance: 100, receipt: "Pending", date: "TBD" },
+        { subject: "POS 063", due: 350, paid: 0, balance: 350, receipt: "Pending", date: "TBD" },
+        { subject: "POS 064", due: 350, paid: 0, balance: 350, receipt: "Pending", date: "TBD" },
+        { subject: "SSP 005", due: 100, paid: 0, balance: 100, receipt: "Pending", date: "TBD" },
       ],
       Y1S2: [
-        { subject: "GEN 006", due: 150, paid: 0, balance: 150, receipt: "Pending", date: "TBD" },
-        { subject: "POS 064", due: 350, paid: 0, balance: 350, receipt: "Pending", date: "TBD" },
+        { subject: "TBD", due: 0, paid: 0, balance: 0, receipt: "Pending", date: "TBD" },
+        { subject: "TBD", due: 0, paid: 0, balance: 0, receipt: "Pending", date: "TBD" },
       ]
     };
 
