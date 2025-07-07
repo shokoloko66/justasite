@@ -231,40 +231,80 @@
     </div>
   </div>
 
-  <script>
-    let correctCaptcha = 0;
+<script>
+  let correctCaptcha = 0;
+  let currentCaptchaOperator = "+";
 
-    function generateCaptcha() {
-      const num1 = Math.floor(Math.random() * 10);
-      const num2 = Math.floor(Math.random() * 10);
-      correctCaptcha = num1 + num2;
-      document.getElementById("captcha-question").textContent = `${num1} + ${num2} =`;
+  function generateCaptcha() {
+    const num1 = Math.floor(Math.random() * 90) + 10;  // two-digit number
+    const num2 = Math.floor(Math.random() * 10) + 1;   // one-digit number
+    const ops = ["+", "-", "*"];
+    currentCaptchaOperator = ops[Math.floor(Math.random() * ops.length)];
+
+    switch (currentCaptchaOperator) {
+      case "+":
+        correctCaptcha = num1 + num2;
+        break;
+      case "-":
+        correctCaptcha = num1 - num2;
+        break;
+      case "*":
+        correctCaptcha = num1 * num2;
+        break;
     }
 
-    function togglePasswordVisibility() {
-      const passwordField = document.getElementById("password");
-      passwordField.type = passwordField.type === "password" ? "text" : "password";
+    const displayOp = currentCaptchaOperator === "*" ? "×" : currentCaptchaOperator;
+    document.getElementById("captcha-question").textContent = `${num1} ${displayOp} ${num2} =`;
+    document.getElementById("captcha-status").textContent = ""; // Reset checkmark/cross
+  }
+
+  function togglePasswordVisibility() {
+    const passwordField = document.getElementById("password");
+    passwordField.type = passwordField.type === "password" ? "text" : "password";
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const captchaAnswer = parseInt(document.getElementById("captcha-answer").value);
+
+    if (captchaAnswer !== correctCaptcha) {
+      alert("Incorrect captcha answer.");
+      generateCaptcha();
+      return false;
     }
 
-    function handleLogin(event) {
-      event.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const captchaAnswer = parseInt(document.getElementById("captcha-answer").value);
+    if (username === "03-01-2425-043566" && password === "@Jhonpaul05") {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("student-info").style.display = "block";
+    } else {
+      alert("Invalid username or password.");
+    }
+  }
 
-      if (captchaAnswer !== correctCaptcha) {
-        alert("Incorrect captcha answer.");
-        generateCaptcha();
-        return false;
-      }
+  function checkCaptchaLive() {
+    const answerInput = document.getElementById("captcha-answer").value.trim();
+    const statusIcon = document.getElementById("captcha-status");
 
-      if (username === "03-01-2425-043566" && password === "@Jhonpaul05") {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("student-info").style.display = "block";
+    if (answerInput === "") {
+      statusIcon.textContent = "";
+      return;
+    }
+
+    const userAnswer = parseInt(answerInput);
+    if (!isNaN(userAnswer)) {
+      if (userAnswer === correctCaptcha) {
+        statusIcon.textContent = "✅";
+        statusIcon.style.color = "green";
       } else {
-        alert("Invalid username or password.");
+        statusIcon.textContent = "❌";
+        statusIcon.style.color = "red";
       }
+    } else {
+      statusIcon.textContent = "";
     }
+  }
 
     const semesterData = {
       Y1S1: [
