@@ -176,7 +176,8 @@
 
         <div class="mb-3 captcha-box">
           <span id="captcha-question">?</span>
-          <input type="text" class="form-control" id="captcha-answer" style="width: 60px;" placeholder="?" required />
+          <input type="text" class="form-control" id="captcha-answer" style="width: 60px;" placeholder="?" required oninput="checkCaptchaLive()" />
+          <span id="captcha-status" style="font-size: 1.2em;"></span>
         </div>
 
         <div class="mb-3">
@@ -233,12 +234,23 @@
 
   <script>
     let correctCaptcha = 0;
+    let currentCaptchaOperator = "+";
 
     function generateCaptcha() {
-      const num1 = Math.floor(Math.random() * 10);
-      const num2 = Math.floor(Math.random() * 10);
-      correctCaptcha = num1 + num2;
-      document.getElementById("captcha-question").textContent = ${num1} + ${num2} =;
+      const num1 = Math.floor(Math.random() * 90) + 10;
+      const num2 = Math.floor(Math.random() * 10) + 1;
+      const ops = ["+", "-", "*"];
+      currentCaptchaOperator = ops[Math.floor(Math.random() * ops.length)];
+
+      switch (currentCaptchaOperator) {
+        case "+": correctCaptcha = num1 + num2; break;
+        case "-": correctCaptcha = num1 - num2; break;
+        case "*": correctCaptcha = num1 * num2; break;
+      }
+
+      const displayOp = currentCaptchaOperator === "*" ? "×" : currentCaptchaOperator;
+      document.getElementById("captcha-question").textContent = `${num1} ${displayOp} ${num2} =`;
+      document.getElementById("captcha-status").textContent = "";
     }
 
     function togglePasswordVisibility() {
@@ -263,6 +275,29 @@
         document.getElementById("student-info").style.display = "block";
       } else {
         alert("Invalid username or password.");
+      }
+    }
+
+    function checkCaptchaLive() {
+      const answerInput = document.getElementById("captcha-answer").value.trim();
+      const statusIcon = document.getElementById("captcha-status");
+
+      if (answerInput === "") {
+        statusIcon.textContent = "";
+        return;
+      }
+
+      const userAnswer = parseInt(answerInput);
+      if (!isNaN(userAnswer)) {
+        if (userAnswer === correctCaptcha) {
+          statusIcon.textContent = "✅";
+          statusIcon.style.color = "green";
+        } else {
+          statusIcon.textContent = "❌";
+          statusIcon.style.color = "red";
+        }
+      } else {
+        statusIcon.textContent = "";
       }
     }
 
@@ -297,7 +332,7 @@
         totalPaid += row.paid;
         totalBalance += row.balance;
 
-        tbody.innerHTML += 
+        tbody.innerHTML += `
           <tr>
             <td>${row.subject}</td>
             <td class="text-primary">${row.due}</td>
@@ -306,13 +341,13 @@
             <td>${row.receipt}</td>
             <td>${row.date}</td>
           </tr>
-        ;
+        `;
       });
 
-      document.getElementById("total-demand").textContent = ₱${totalDue.toLocaleString(undefined, { minimumFractionDigits: 2 })};
-      document.getElementById("total-paid").textContent = ₱${totalPaid.toLocaleString(undefined, { minimumFractionDigits: 2 })};
-      document.getElementById("total-balance").textContent = ₱${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })};
-      document.getElementById("total-excess").textContent = ₱0.00;
+      document.getElementById("total-demand").textContent = `₱${totalDue.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+      document.getElementById("total-paid").textContent = `₱${totalPaid.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+      document.getElementById("total-balance").textContent = `₱${totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+      document.getElementById("total-excess").textContent = `₱0.00`;
     }
 
     window.onload = function () {
